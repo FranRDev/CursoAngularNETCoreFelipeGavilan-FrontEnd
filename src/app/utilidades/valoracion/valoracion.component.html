@@ -1,0 +1,9 @@
+<mat-icon
+    *ngFor="let estrella of estrellas; let indice = index"
+    (mouseenter)="ratonEncima(indice)"
+    (mouseleave)="ratonFuera()"
+    (click)="valorar(indice)"
+    [ngClass]="{seleccionado: seleccionado > indice}">
+
+    star
+</mat-icon>

@@ -1,0 +1,23 @@
+<form [formGroup]="formulario" (submit)="guardar()">
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre *</mat-label>
+        <input formControlName="nombre" matInput />
+        <mat-error>Debe introducir el nombre.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input formControlName="fechaNacimiento" matInput [matDatepicker]="selectorFecha" />
+        <mat-datepicker-toggle matSuffix [for]="selectorFecha"></mat-datepicker-toggle>
+        <mat-datepicker #selectorFecha></mat-datepicker>
+    </mat-form-field>
+
+    <app-selector-imagen [urlImagenActual]="modelo?.foto" (archivoSeleccionado)="obtenerArchivoSeleccionado($event)"></app-selector-imagen>
+
+    <app-editor-markdown [titulo]="'Biografía'" (textoIntroducido)="obtenerTextoIntroducido($event)"></app-editor-markdown>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="formulario.invalid">Guardar</button>
+        <a mat-stroked-button routerLink="/actores">Cancelar</a>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+<form [formGroup]="formulario" (submit)="guardar()">
+    <mat-form-field appearance="outline">
+        <mat-label>Título *</mat-label>
+        <input formControlName="titulo" matInput />
+        <mat-error>Debe introducir el título</mat-error>
+    </mat-form-field>
+
+    <app-editor-markdown [titulo]="'Sinopsis'" [texto]="modelo?.sinopsis" (textoIntroducido)="obtenerTextoIntroducido($event)"></app-editor-markdown>
+
+    <h4>Selecciones el/los género/s:</h4>
+    <app-selector-multiple [elementosNoSeleccionados]="generosNoSeleccionados" [elementosSeleccionados]="generosSeleccionados"></app-selector-multiple>
+
+    <h4>Seleccione los actores:</h4>
+    <app-autocompletar-actor></app-autocompletar-actor>
+
+    <h4>Selecciona el póster:</h4>
+    <app-selector-imagen [urlImagenActual]="modelo?.poster" (archivoSeleccionado)="obtenerArchivoSeleccionado($event)"></app-selector-imagen>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Trailer</mat-label>
+        <input formControlName="trailer" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Fecha de lanzamiento</mat-label>
+        <input formControlName="fechaLanzamiento" matInput [matDatepicker]="selectorFecha" />
+        <mat-datepicker-toggle matSuffix [for]="selectorFecha"></mat-datepicker-toggle>
+        <mat-datepicker #selectorFecha></mat-datepicker>
+    </mat-form-field>
+
+    <div class="contenedor-checkbox">
+        <mat-checkbox formControlName="enCartelera">En cartelera</mat-checkbox>
+    </div>
+
+    <h4>Selecciones el/los cine/s:</h4>
+    <app-selector-multiple [elementosNoSeleccionados]="cinesNoSeleccionados" [elementosSeleccionados]="cinesSeleccionados"></app-selector-multiple>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="formulario.invalid">Guardar</button>
+        <a mat-stroked-button routerLink="/">Cancelar</a>
+    </div>
+</form>

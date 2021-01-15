@@ -1,0 +1,7 @@
+.seleccionado {
+    color: orange;
+}
+
+mat-icon {
+    cursor: pointer;
+}

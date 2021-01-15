@@ -1,0 +1,46 @@
+<form>
+    <mat-form-field>
+        <input type="text" placeholder="Seleccione el actor" matInput [formControl]="control" [matAutocomplete]="autocompletar" />
+    </mat-form-field>
+
+    <mat-autocomplete #autocompletar (optionSelected)="obtenerOpcionSeleccionada($event)">
+        <mat-option *ngFor="let actor of actores" [value]="actor">
+            <img [src]="actor.foto" /> {{ actor.nombre }}
+        </mat-option>
+    </mat-autocomplete>
+</form>
+
+<table *ngIf="actoresSeleccionados.length > 0" mat-table [dataSource]="actoresSeleccionados" class="mat-elevation-z8" cdkDropList [cdkDropListData]="actoresSeleccionados"
+    (cdkDropListDropped)="obtenerElementoArrastrado($event)">
+
+    <ng-container matColumnDef="foto">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <th mat-cell *matCellDef="let elemento">
+            <img style="width: 50px;" [src]="elemento.foto" />
+        </th>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <th mat-cell *matCellDef="let elemento">{{ elemento.nombre }}</th>
+    </ng-container>
+
+    <ng-container matColumnDef="personaje">
+        <th mat-header-cell *matHeaderCellDef>Personaje</th>
+        <th mat-cell *matCellDef="let elemento">
+            <mat-form-field appearance="outline" style="margin-top: 10 px;">
+                <mat-label>Personaje</mat-label>
+                <input matInput [(ngModel)]="elemento.personaje" />
+            </mat-form-field>
+        </th>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <th mat-cell *matCellDef="let elemento">
+            <mat-icon mat-list-icon (click)="eliminar(elemento)">close</mat-icon>
+        </th>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let fila; columns: columnasAMostrar" cdkDrag [cdkDragData]="fila"></tr>
+</table>
