@@ -22,7 +22,7 @@ export class FormularioGeneroComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
-      nombre: ['', {validators: [Validators.required, Validators.minLength(3), primeraLetraMayuscula()]}]
+      nombre: ['', {validators: [Validators.required, Validators.minLength(3)]}]
     });
 
     if (this.modelo !== undefined) {
