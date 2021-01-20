@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser';
@@ -78,7 +79,8 @@ import { AutocompletarActorComponent } from './actores/autocompletar-actor/autoc
     MarkdownModule.forRoot(),
     LeafletModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
