@@ -39,6 +39,7 @@ import { MapaComponent } from './utilidades/mapa/mapa.component';
 import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/formulario-pelicula.component';
 import { SelectorMultipleComponent } from './utilidades/selector-multiple/selector-multiple.component';
 import { AutocompletarActorComponent } from './actores/autocompletar-actor/autocompletar-actor.component';
+import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { AutocompletarActorComponent } from './actores/autocompletar-actor/autoc
     MapaComponent,
     FormularioPeliculaComponent,
     SelectorMultipleComponent,
-    AutocompletarActorComponent
+    AutocompletarActorComponent,
+    MostrarErroresComponent
   ],
   imports: [
     BrowserModule,
