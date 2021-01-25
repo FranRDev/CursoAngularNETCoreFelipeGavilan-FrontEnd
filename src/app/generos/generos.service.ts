@@ -33,7 +33,7 @@ export class GenerosService {
     let parametros = new HttpParams();
     parametros = parametros.append('Pagina', pagina.toString());
     parametros = parametros.append('Registros', registros.toString());
-    return this.httpClient.get<GeneroDTO[]>(this.urlApi, {observe: 'response', params: parametros});
+    return this.httpClient.get<GeneroDTO[]>(this.urlApi, { observe: 'response', params: parametros });
   }
 
 }

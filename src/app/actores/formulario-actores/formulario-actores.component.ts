@@ -12,6 +12,9 @@ export class FormularioActoresComponent implements OnInit {
   formulario: FormGroup;
 
   @Input()
+  errores: string[] = [];
+
+  @Input()
   modelo: ActorDTO;
 
   @Output()
@@ -21,7 +24,7 @@ export class FormularioActoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
-      nombre: ['', { validators: [Validators.required]}],
+      nombre: ['', { validators: [Validators.required] }],
       fechaNacimiento: '',
       foto: '',
       biografia: ''
