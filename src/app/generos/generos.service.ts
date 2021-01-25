@@ -13,6 +13,10 @@ export class GenerosService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public borrar(id: number) {
+    return this.httpClient.delete(`${this.urlApi}/${id}`);
+  }
+
   public crear(genero: GeneroCreacionDTO) {
     return this.httpClient.post(this.urlApi, genero);
   }

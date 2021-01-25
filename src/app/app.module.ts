@@ -12,6 +12,7 @@ import { MaterialModule } from './material/material.module';
 import { MarkdownModule } from 'ngx-markdown'
 import { LeafletModule } from '@asymmetrik/ngx-leaflet'
 import "leaflet/dist/images/marker-shadow.png"
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { ListadoPeliculasComponent } from './peliculas/listado-peliculas/listado-peliculas.component';
 import { ListadoGenericoComponent } from './utilidades/listado-generico/listado-generico.component';
@@ -82,7 +83,8 @@ import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-er
     LeafletModule,
     FormsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

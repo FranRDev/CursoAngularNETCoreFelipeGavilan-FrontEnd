@@ -27,6 +27,13 @@ export class IndiceGenerosComponent implements OnInit {
     this.cargarPagina(this.pagina, this.registros);
   }
 
+  borrarGenero(id: number) {
+    this.generosService.borrar(id).subscribe(
+      () => this.cargarPagina(this.pagina, this.registros),
+      error => console.error(error)
+    );
+  }
+
   cambiarPagina(datos: PageEvent) {
     this.pagina = datos.pageIndex + 1;
     this.registros = datos.pageSize;

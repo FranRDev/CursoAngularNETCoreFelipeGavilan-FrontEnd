@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { IndiceGenerosComponent } from './generos/indice-generos/indice-generos.component';
