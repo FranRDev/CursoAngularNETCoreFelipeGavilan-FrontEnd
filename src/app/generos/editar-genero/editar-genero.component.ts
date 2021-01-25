@@ -18,7 +18,10 @@ export class EditarGeneroComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(parametros => {
-      this.generosService.obtenerPorId(parametros.id).subscribe(genero => this.modelo = genero, () => this.router.navigate(['/generos']));
+      this.generosService.obtenerPorId(parametros.id).subscribe(
+        genero => this.modelo = genero,
+        () => this.router.navigate(['/generos'])
+      );
     });
   }
 
@@ -27,7 +30,6 @@ export class EditarGeneroComponent implements OnInit {
       () => this.router.navigate(['/generos']),
       error => this.errores = parsearErroresApi(error)
     );
-
   }
 
 }

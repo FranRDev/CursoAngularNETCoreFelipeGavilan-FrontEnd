@@ -24,13 +24,21 @@ export class ActoresService {
     if (actor.biografia) { datosFormulario.append('biografia', actor.biografia); }
     if (actor.fechaNacimiento) { datosFormulario.append('fechaNacimiento', formatearFecha(actor.fechaNacimiento)); }
     if (actor.foto) { datosFormulario.append('foto', actor.foto); }
-
     return datosFormulario;
   }
 
   public crear(actor: ActorCreacionDTO) {
     const datosFormulario = this.construirDatosFormulario(actor);
     return this.httpClient.post(this.urlApi, datosFormulario);
+  }
+
+  public editar(id: number, actor: ActorCreacionDTO) {
+    const datosFormulario = this.construirDatosFormulario(actor);
+    return this.httpClient.put(`${this.urlApi}/${id}`, datosFormulario);
+  }
+
+  public obtenerPorId(id: number) {
+    return this.httpClient.get<ActorDTO>(`${this.urlApi}/${id}`);
   }
 
   public obtenerTodos(pagina: number, registros: number): Observable<any> {

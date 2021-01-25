@@ -16,7 +16,7 @@
 
     <app-selector-imagen [urlImagenActual]="modelo?.foto" (archivoSeleccionado)="obtenerArchivoSeleccionado($event)"></app-selector-imagen>
 
-    <app-editor-markdown [titulo]="'Biografía'" (textoIntroducido)="obtenerTextoIntroducido($event)"></app-editor-markdown>
+    <app-editor-markdown [titulo]="'Biografía'" [texto]="modelo?.biografia" (textoIntroducido)="obtenerTextoIntroducido($event)"></app-editor-markdown>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="formulario.invalid">Guardar</button>

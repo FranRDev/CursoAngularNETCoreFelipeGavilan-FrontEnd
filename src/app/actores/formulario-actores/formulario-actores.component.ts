@@ -11,6 +11,8 @@ export class FormularioActoresComponent implements OnInit {
 
   formulario: FormGroup;
 
+  fotoCambiada = false;
+
   @Input()
   errores: string[] = [];
 
@@ -36,6 +38,7 @@ export class FormularioActoresComponent implements OnInit {
   }
 
   obtenerArchivoSeleccionado(archivo: File) {
+    this.fotoCambiada = true;
     this.formulario.get('foto').setValue(archivo);
   }
 
@@ -44,6 +47,7 @@ export class FormularioActoresComponent implements OnInit {
   }
 
   guardar() {
+    if (!this.fotoCambiada) { this.formulario.patchValue({ 'foto': null }); }
     this.envio.emit(this.formulario.value);
   }
 
