@@ -10,23 +10,17 @@ import { PeliculaCreacionDTO, PeliculaDTO } from '../pelicula';
 })
 export class FormularioPeliculaComponent implements OnInit {
 
-  formulario: FormGroup;
+  cinesSeleccionados: ElementoSelectorMultiple[] = [];
 
-  generosNoSeleccionados: ElementoSelectorMultiple[] = [
-    { llave: 1, valor: 'Drama' },
-    { llave: 2, valor: 'Acción' },
-    { llave: 3, valor: 'Comedia' }
-  ];
+  formulario: FormGroup;
 
   generosSeleccionados: ElementoSelectorMultiple[] = [];
 
-  cinesNoSeleccionados: ElementoSelectorMultiple[] = [
-    { llave: 1, valor: 'Yelmo Premium Lagoh' },
-    { llave: 2, valor: 'Cinesur Nervión' },
-    { llave: 3, valor: 'CineZona' }
-  ];
+  @Input()
+  cinesNoSeleccionados: ElementoSelectorMultiple[];
 
-  cinesSeleccionados: ElementoSelectorMultiple[] = [];
+  @Input()
+  generosNoSeleccionados: ElementoSelectorMultiple[];
 
   @Input()
   modelo: PeliculaDTO;
