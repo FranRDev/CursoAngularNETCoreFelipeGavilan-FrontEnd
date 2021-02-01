@@ -15,6 +15,9 @@ export class FormularioCineComponent implements OnInit {
   coordenadasInicial: Coordenadas[] = [];
 
   @Input()
+  errores: string[] = [];
+
+  @Input()
   modelo: CineDTO;
 
   @Output()
