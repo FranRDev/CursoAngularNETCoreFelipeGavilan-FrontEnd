@@ -1,9 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { formatearFecha } from '../utilidades/utilidades';
-import { ActorCreacionDTO, ActorDTO } from './actor';
+import { ActorCreacionDTO, ActorDTO, ActorPeliculaDTO } from './actor';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,12 @@ export class ActoresService {
 
   public obtenerPorId(id: number) {
     return this.httpClient.get<ActorDTO>(`${this.urlApi}/${id}`);
+  }
+
+  public obtenerPorNombre(nombre: string): Observable<ActorPeliculaDTO[]> {
+    const cabecera = new HttpHeaders('Content-Type: application/json');
+    console.log(JSON.stringify(nombre));
+    return this.httpClient.post<ActorPeliculaDTO[]>(`${this.urlApi}/obtenerpornombre`, JSON.stringify(nombre), { headers: cabecera });
   }
 
   public obtenerTodos(pagina: number, registros: number): Observable<any> {

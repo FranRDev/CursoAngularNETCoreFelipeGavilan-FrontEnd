@@ -4,7 +4,7 @@
     </mat-form-field>
 
     <mat-autocomplete #autocompletar (optionSelected)="obtenerOpcionSeleccionada($event)">
-        <mat-option *ngFor="let actor of actores" [value]="actor">
+        <mat-option *ngFor="let actor of actoresAMostrar" [value]="actor">
             <img [src]="actor.foto" /> {{ actor.nombre }}
         </mat-option>
     </mat-autocomplete>

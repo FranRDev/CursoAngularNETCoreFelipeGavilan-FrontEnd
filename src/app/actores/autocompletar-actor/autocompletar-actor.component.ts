@@ -1,8 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTable } from '@angular/material/table';
+import { ActorPeliculaDTO } from '../actor';
+import { ActoresService } from '../actores.service';
 
 @Component({
   selector: 'app-autocompletar-actor',
@@ -11,33 +13,30 @@ import { MatTable } from '@angular/material/table';
 })
 export class AutocompletarActorComponent implements OnInit {
 
+  actoresAMostrar: ActorPeliculaDTO[] = [];
+
   control: FormControl = new FormControl();
-
-  actores = [
-    { nombre: 'Tom Holland', personaje: '', foto: 'https://t2.gstatic.com/images?q=tbn:ANd9GcT2mdIv2oSgUO0zm7jZHboIgb1T7ligSAizsDiuDbOC94Dt8TZffj5WtNHFvoci' },
-    { nombre: 'Tom Hanks', personaje: '', foto: 'https://t3.gstatic.com/images?q=tbn:ANd9GcSiXo37wjvqGOnPgsWwZ13-Xkw6fQ1PUkL79pIhHa2Tch2S0qLT3m8tqid25IIo' },
-    { nombre: 'Samuel L. Jackson', personaje: '', foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Samuel_L._Jackson_2019_by_Glenn_Francis.jpg/1200px-Samuel_L._Jackson_2019_by_Glenn_Francis.jpg' }
-  ];
-
-  actoresOriginal = this.actores;
-
-  actoresSeleccionados = [];
 
   columnasAMostrar = ['foto', 'nombre', 'personaje', 'acciones'];
 
+  @Input()
+  actoresSeleccionados: ActorPeliculaDTO[] = [];
+
   @ViewChild(MatTable) tabla: MatTable<any>;
 
-  constructor() { }
+  constructor(private actoresService: ActoresService) { }
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe(valor => {
-      this.actores = this.actoresOriginal;
-      this.actores = this.actores.filter(actor => actor.nombre.indexOf(valor) !== -1);
+    this.control.valueChanges.subscribe(nombre => {
+      this.actoresService.obtenerPorNombre(nombre)
+        .subscribe(
+          actores => this.actoresAMostrar = actores,
+          error => console.error(error)
+        );
     });
   }
 
   obtenerOpcionSeleccionada(mase: MatAutocompleteSelectedEvent) {
-    console.log(mase.option.value);
     this.actoresSeleccionados.push(mase.option.value);
     this.control.patchValue('');
 

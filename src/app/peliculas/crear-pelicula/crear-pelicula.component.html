@@ -1,6 +1,6 @@
 <h2>Añadir película</h2>
 
-<app-formulario-pelicula *ngIf="cinesNoSeleccionados" [cinesNoSeleccionados]="cinesNoSeleccionados" [generosNoSeleccionados]="generosNoSeleccionados" (envio)="guardar($event)">
+<app-formulario-pelicula *ngIf="cinesNoSeleccionados" [cinesNoSeleccionados]="cinesNoSeleccionados" [errores]="errores" [generosNoSeleccionados]="generosNoSeleccionados" (envio)="guardar($event)">
 </app-formulario-pelicula>
 
 <mat-spinner *ngIf="!cinesNoSeleccionados"></mat-spinner>

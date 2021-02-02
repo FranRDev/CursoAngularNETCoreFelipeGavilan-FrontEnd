@@ -14,7 +14,7 @@ export class EditarPeliculaComponent {
     sinopsis: 'Una peli',
     trailer: 'https://www.youtube.com/watch?v=mYTmQWZkw10&ab_channel=SonyPicturesEspa%C3%B1a',
     fechaLanzamiento: new Date(),
-    enCartelera: false
+    cartelera: false
   };
 
   constructor() { }

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { formatearFecha } from '../utilidades/utilidades';
 import { PeliculaCreacionDTO, PeliculaDTO, PeliculaPostGet } from './pelicula';
 
 @Injectable({
@@ -17,9 +18,24 @@ export class PeliculasService {
   //   return this.httpClient.delete(`${this.urlApi}/${id}`);
   // }
 
-  // public crear(pelicula: PeliculaCreacionDTO) {
-  //   return this.httpClient.post(this.urlApi, pelicula);
-  // }
+  private construirDatosFormulario(pelicula: PeliculaCreacionDTO): FormData {
+    const datosFormulario = new FormData();
+    datosFormulario.append('titulo', pelicula.titulo);
+    datosFormulario.append('sinopsis', pelicula.sinopsis);
+    datosFormulario.append('trailer', pelicula.trailer);
+    datosFormulario.append('cartelera', String(pelicula.cartelera));
+    if (pelicula.fechaLanzamiento) { datosFormulario.append('fechaLanzamiento', formatearFecha(pelicula.fechaLanzamiento)); }
+    if (pelicula.poster) { datosFormulario.append('poster', pelicula.poster); }
+    datosFormulario.append('actores', JSON.stringify(pelicula.actores));
+    datosFormulario.append('idsCines', JSON.stringify(pelicula.idsCines));
+    datosFormulario.append('idsGeneros', JSON.stringify(pelicula.idsGeneros));
+    return datosFormulario;
+  }
+
+  public crear(pelicula: PeliculaCreacionDTO) {
+    const datosFormulario = this.construirDatosFormulario(pelicula);
+    return this.httpClient.post(this.urlApi, datosFormulario);
+  }
 
   // public editar(id: number, pelicula: PeliculaCreacionDTO) {
   //   return this.httpClient.put(`${this.urlApi}/${id}`, pelicula);

@@ -1,3 +1,5 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
 <form [formGroup]="formulario" (submit)="guardar()">
     <mat-form-field appearance="outline">
         <mat-label>Título *</mat-label>
@@ -11,7 +13,7 @@
     <app-selector-multiple [elementosNoSeleccionados]="generosNoSeleccionados" [elementosSeleccionados]="generosSeleccionados"></app-selector-multiple>
 
     <h4>Seleccione los actores:</h4>
-    <app-autocompletar-actor></app-autocompletar-actor>
+    <app-autocompletar-actor [actoresSeleccionados]="actoresSeleccionados"></app-autocompletar-actor>
 
     <h4>Selecciona el póster:</h4>
     <app-selector-imagen [urlImagenActual]="modelo?.poster" (archivoSeleccionado)="obtenerArchivoSeleccionado($event)"></app-selector-imagen>
@@ -29,7 +31,7 @@
     </mat-form-field>
 
     <div class="contenedor-checkbox">
-        <mat-checkbox formControlName="enCartelera">En cartelera</mat-checkbox>
+        <mat-checkbox formControlName="cartelera">En cartelera</mat-checkbox>
     </div>
 
     <h4>Selecciones el/los cine/s:</h4>
