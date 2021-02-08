@@ -41,9 +41,9 @@ export class PeliculasService {
   //   return this.httpClient.put(`${this.urlApi}/${id}`, pelicula);
   // }
 
-  // public obtenerPorId(id: number) {
-  //   return this.httpClient.get<PeliculaDTO>(`${this.urlApi}/${id}`);
-  // }
+  public obtenerPorId(id: number): Observable<PeliculaDTO> {
+    return this.httpClient.get<PeliculaDTO>(`${this.urlApi}/${id}`);
+  }
 
   // public obtenerTodos(pagina: number, registros: number): Observable<any> {
   //   let parametros = new HttpParams();
