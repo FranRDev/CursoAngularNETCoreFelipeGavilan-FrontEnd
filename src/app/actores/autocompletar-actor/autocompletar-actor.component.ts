@@ -28,11 +28,13 @@ export class AutocompletarActorComponent implements OnInit {
 
   ngOnInit(): void {
     this.control.valueChanges.subscribe(nombre => {
-      this.actoresService.obtenerPorNombre(nombre)
-        .subscribe(
-          actores => this.actoresAMostrar = actores,
-          error => console.error(error)
-        );
+      if (typeof nombre == 'string' && nombre) {
+        this.actoresService.obtenerPorNombre(nombre)
+          .subscribe(
+            actores => this.actoresAMostrar = actores,
+            error => console.error(error)
+          );
+      }
     });
   }
 
