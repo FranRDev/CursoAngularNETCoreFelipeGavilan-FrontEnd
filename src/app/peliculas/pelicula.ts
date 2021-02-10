@@ -1,8 +1,14 @@
-import { ActorDTO, ActorPeliculaDTO } from "../actores/actor";
+import { ActorPeliculaDTO } from "../actores/actor";
 import { CineDTO } from "../cines/cine";
 import { GeneroDTO } from "../generos/genero";
 
+export interface PaginaInicioDTO {
+    enCartelera: PeliculaDTO[];
+    proximosEstrenos: PeliculaDTO[];
+}
+
 export interface PeliculaDTO {
+    id: number;
     titulo: string;
     poster: string;
     sinopsis: string;
