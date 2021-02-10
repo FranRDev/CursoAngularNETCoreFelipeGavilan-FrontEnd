@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { latLng, LeafletMouseEvent, marker, Marker, tileLayer } from 'leaflet';
-import { Coordenadas } from './coordenadas';
+import { Coordenadas, CoordenadasConMensaje } from './coordenadas';
 
 @Component({
   selector: 'app-mapa',
@@ -20,7 +20,10 @@ export class MapaComponent implements OnInit {
   marcadores: Marker<any>[] = [];
 
   @Input()
-  coordenadasIniciales: Coordenadas[] = [];
+  coordenadasIniciales: CoordenadasConMensaje[] = [];
+
+  @Input()
+  soloLectura: boolean = false;
 
   @Output()
   coordenadasSeleccionada: EventEmitter<Coordenadas> = new EventEmitter<Coordenadas>();
@@ -28,17 +31,25 @@ export class MapaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.marcadores = this.coordenadasIniciales.map(valor => marker([valor.latitud, valor.longitud]));
+    this.marcadores = this.coordenadasIniciales.map(valor => {
+      let marcador = marker([valor.latitud, valor.longitud]);
+
+      if (valor.mensaje) {
+        marcador.bindPopup(valor.mensaje, { autoClose: false, autoPan: false });
+      }
+
+      return marcador;
+    });
   }
 
   mapaCliqueado(lme: LeafletMouseEvent) {
-    const latitud = lme.latlng.lat;
-    const longitud = lme.latlng.lng;
-    console.log({latitud, longitud});
-
-    this.marcadores = [];
-    this.marcadores.push(marker([latitud, longitud]));
-    this.coordenadasSeleccionada.emit({ latitud: latitud, longitud: longitud });
+    if (!this.soloLectura) {
+      const latitud = lme.latlng.lat;
+      const longitud = lme.latlng.lng;
+      this.marcadores = [];
+      this.marcadores.push(marker([latitud, longitud]));
+      this.coordenadasSeleccionada.emit({ latitud: latitud, longitud: longitud });
+    }
   }
 
 }

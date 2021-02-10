@@ -9,7 +9,7 @@ export interface PeliculaDTO {
     trailer: string;
     fechaLanzamiento: Date;
     cartelera: boolean;
-    actores: ActorDTO[];
+    actores: ActorPeliculaDTO[];
     cines: CineDTO[];
     generos: GeneroDTO[];
 }

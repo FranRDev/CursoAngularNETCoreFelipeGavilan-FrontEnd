@@ -9,11 +9,11 @@
 
     <h4>Seleccione la ubicación del cine:</h4>
 
-    <div>
+    <div style="position: relative;">
         <app-mapa [coordenadasIniciales]="coordenadasInicial" (coordenadasSeleccionada)="obtenerCoordenadasSeleccionada($event)"></app-mapa>
     </div>
 
-    <div>
+    <div style="margin-top: 650px;">
         <button mat-flat-button color="primary" [disabled]="formulario.invalid">Guardar</button>
         <a mat-stroked-button routerLink="/cines">Cancelar</a>
     </div>
