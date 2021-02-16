@@ -36,3 +36,12 @@ export interface PeliculaPostGet {
     cines: CineDTO[];
     generos: GeneroDTO[];
 }
+
+export interface PeliculaPutGet {
+    pelicula: PeliculaDTO;
+    generosSeleccionados: GeneroDTO[];
+    generosNoSeleccionados: GeneroDTO[];
+    cinesSeleccionados: CineDTO[];
+    cinesNoSeleccionados: CineDTO[];
+    actores: ActorPeliculaDTO[];
+}

@@ -11,10 +11,14 @@ import { PeliculaCreacionDTO, PeliculaDTO } from '../pelicula';
 })
 export class FormularioPeliculaComponent implements OnInit {
 
+  imagenCambiada = false;
+
+  @Input()
   cinesSeleccionados: ElementoSelectorMultiple[] = [];
 
   formulario: FormGroup;
 
+  @Input()
   generosSeleccionados: ElementoSelectorMultiple[] = [];
 
   @Input()
@@ -57,6 +61,7 @@ export class FormularioPeliculaComponent implements OnInit {
 
   obtenerArchivoSeleccionado(archivo: File) {
     this.formulario.get('poster').setValue(archivo);
+    this.imagenCambiada = true;
   }
 
   obtenerTextoIntroducido(texto: string) {
@@ -67,7 +72,7 @@ export class FormularioPeliculaComponent implements OnInit {
     this.formulario.get('idsGeneros').setValue(this.generosSeleccionados.map(valor => valor.llave));
     this.formulario.get('idsCines').setValue(this.cinesSeleccionados.map(valor => valor.llave));
     this.formulario.get('actores').setValue(this.actoresSeleccionados.map(actor => { return { id: actor.id, personaje: actor.personaje } }));
-    console.log(this.formulario.value);
+    if (!this.imagenCambiada) { this.formulario.patchValue({ 'poster': null }); }
     this.envio.emit(this.formulario.value);
   }
 
