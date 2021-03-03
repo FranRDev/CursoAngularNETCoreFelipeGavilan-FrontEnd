@@ -15,6 +15,14 @@ export class PaginaInicioComponent implements OnInit {
   constructor(private peliculasService: PeliculasService) { }
 
   ngOnInit(): void {
+    this.cargarDatos();
+  }
+
+  borrado() {
+    this.cargarDatos();
+  }
+
+  cargarDatos() {
     this.peliculasService.obtenerPaginaInicio().subscribe(
       paginaInicio => {
         this.peliculasCartelera = paginaInicio.enCartelera;
@@ -22,10 +30,6 @@ export class PaginaInicioComponent implements OnInit {
       },
       error => console.error(error)
     );
-  }
-
-  valorado(valoracion: number): void {
-    alert(valoracion);
   }
 
 }

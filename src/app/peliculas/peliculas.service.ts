@@ -14,9 +14,9 @@ export class PeliculasService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // public borrar(id: number) {
-  //   return this.httpClient.delete(`${this.urlApi}/${id}`);
-  // }
+  public borrar(id: number) {
+    return this.httpClient.delete(`${this.urlApi}/${id}`);
+  }
 
   private construirDatosFormulario(pelicula: PeliculaCreacionDTO): FormData {
     const datosFormulario = new FormData();

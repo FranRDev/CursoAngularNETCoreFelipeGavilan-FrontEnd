@@ -15,7 +15,9 @@
                         Editar
                     </a>
 
-                    <button mat-flat-button color="warn" type="button">
+                    <button mat-flat-button color="warn" type="button"
+                        [swal]="{title: 'Confirmación', text: '¿Desea eliminar la película?', showCancelButton: true}"
+                        (confirm)="borrarPelicula(pelicula.id)">
                         Borrar
                     </button>
                 </div>
