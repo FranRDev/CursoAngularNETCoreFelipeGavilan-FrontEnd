@@ -20,17 +20,21 @@ export class DetallePeliculaComponent implements OnInit {
   constructor(private peliculasService: PeliculasService, private activatedRoute: ActivatedRoute, private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(parametros => {
-      this.peliculasService.obtenerPorId(parametros.id).subscribe(pelicula => {
-        console.log(pelicula);
-        this.pelicula = pelicula;
-        this.fechaLanzamiento = new Date(this.pelicula.fechaLanzamiento);
-        this.trailer = this.generarUrlYouTubeSegura(this.pelicula.trailer);
-        this.coordenadas = pelicula.cines.map(cine => {
-          return { longitud: cine.longitud, latitud: cine.latitud, mensaje: cine.nombre }
-        });
-      })
-    })
+    this.activatedRoute.params.subscribe(
+      parametros => {
+        this.peliculasService.obtenerPorId(parametros.id).subscribe(
+          pelicula => {
+            console.log(pelicula);
+            this.pelicula = pelicula;
+            this.fechaLanzamiento = new Date(this.pelicula.fechaLanzamiento);
+            this.trailer = this.generarUrlYouTubeSegura(this.pelicula.trailer);
+            this.coordenadas = pelicula.cines.map(cine => {
+              return { longitud: cine.longitud, latitud: cine.latitud, mensaje: cine.nombre }
+            });
+          },
+          error => console.error(error))
+      },
+      error => console.error(error))
   }
 
   private generarUrlYouTubeSegura(url: any): SafeResourceUrl {

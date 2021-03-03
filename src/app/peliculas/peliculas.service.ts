@@ -32,14 +32,19 @@ export class PeliculasService {
     return datosFormulario;
   }
 
-  public crear(pelicula: PeliculaCreacionDTO) {
+  public crear(pelicula: PeliculaCreacionDTO): Observable<number> {
     const datosFormulario = this.construirDatosFormulario(pelicula);
-    return this.httpClient.post(this.urlApi, datosFormulario);
+    return this.httpClient.post<number>(this.urlApi, datosFormulario);
   }
 
   public editar(id: number, pelicula: PeliculaCreacionDTO) {
     const datosFormulario = this.construirDatosFormulario(pelicula);
     return this.httpClient.put(`${this.urlApi}/${id}`, datosFormulario);
+  }
+
+  public filtrar(valores: any): Observable<any> {
+    const parametros = new HttpParams({fromObject: valores});
+    return this.httpClient.get<PeliculaDTO[]>(`${this.urlApi}/filtrar`, {params: parametros, observe: 'response'});
   }
 
   public obtenerPaginaInicio(): Observable<PaginaInicioDTO> {
@@ -49,13 +54,6 @@ export class PeliculasService {
   public obtenerPorId(id: number): Observable<PeliculaDTO> {
     return this.httpClient.get<PeliculaDTO>(`${this.urlApi}/${id}`);
   }
-
-  // public obtenerTodos(pagina: number, registros: number): Observable<any> {
-  //   let parametros = new HttpParams();
-  //   parametros = parametros.append('Pagina', pagina.toString());
-  //   parametros = parametros.append('Registros', registros.toString());
-  //   return this.httpClient.get<PeliculaDTO[]>(this.urlApi, { observe: 'response', params: parametros });
-  // }
 
   public postGet(): Observable<PeliculaPostGet> {
     return this.httpClient.get<PeliculaPostGet>(`${this.urlApi}/postget`)

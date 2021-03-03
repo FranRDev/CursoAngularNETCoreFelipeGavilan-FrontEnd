@@ -26,10 +26,10 @@ const routes: Routes = [
   { path: 'generos', component: IndiceGenerosComponent },
   { path: 'generos/crear', component: CrearGeneroComponent },
   { path: 'generos/editar/:id', component: EditarGeneroComponent },
-  { path: 'peliculas/:id', component: DetallePeliculaComponent },
-  { path: 'peliculas/buscar', component: FiltroPeliculasComponent },
   { path: 'peliculas/crear', component: CrearPeliculaComponent },
+  { path: 'peliculas/buscar', component: FiltroPeliculasComponent },
   { path: 'peliculas/editar/:id', component: EditarPeliculaComponent },
+  { path: 'peliculas/:id', component: DetallePeliculaComponent },
   { path: '**', redirectTo: '' }
 ];
 
