@@ -14,21 +14,24 @@ import { EditarGeneroComponent } from './generos/editar-genero/editar-genero.com
 import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-pelicula.component';
 import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-peliculas.component';
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
+import { AdminGuard } from './admin.guard';
+import { IniciarSesionComponent } from './seguridad/iniciar-sesion/iniciar-sesion.component';
 
 const routes: Routes = [
   { path: '', component: PaginaInicioComponent },
-  { path: 'actores', component: IndiceActoresComponent },
-  { path: 'actores/crear', component: CrearActorComponent },
-  { path: 'actores/editar/:id', component: EditarActorComponent },
-  { path: 'cines', component: IndiceCinesComponent },
-  { path: 'cines/crear', component: CrearCineComponent },
-  { path: 'cines/editar/:id', component: EditarCineComponent },
-  { path: 'generos', component: IndiceGenerosComponent },
-  { path: 'generos/crear', component: CrearGeneroComponent },
-  { path: 'generos/editar/:id', component: EditarGeneroComponent },
-  { path: 'peliculas/crear', component: CrearPeliculaComponent },
+  { path: 'iniciar-sesion', component: IniciarSesionComponent },
+  { path: 'actores', component: IndiceActoresComponent, canActivate: [AdminGuard] },
+  { path: 'actores/crear', component: CrearActorComponent, canActivate: [AdminGuard] },
+  { path: 'actores/editar/:id', component: EditarActorComponent, canActivate: [AdminGuard] },
+  { path: 'cines', component: IndiceCinesComponent, canActivate: [AdminGuard] },
+  { path: 'cines/crear', component: CrearCineComponent, canActivate: [AdminGuard] },
+  { path: 'cines/editar/:id', component: EditarCineComponent, canActivate: [AdminGuard] },
+  { path: 'generos', component: IndiceGenerosComponent, canActivate: [AdminGuard] },
+  { path: 'generos/crear', component: CrearGeneroComponent, canActivate: [AdminGuard] },
+  { path: 'generos/editar/:id', component: EditarGeneroComponent, canActivate: [AdminGuard] },
+  { path: 'peliculas/crear', component: CrearPeliculaComponent, canActivate: [AdminGuard] },
   { path: 'peliculas/buscar', component: FiltroPeliculasComponent },
-  { path: 'peliculas/editar/:id', component: EditarPeliculaComponent },
+  { path: 'peliculas/editar/:id', component: EditarPeliculaComponent, canActivate: [AdminGuard] },
   { path: 'peliculas/:id', component: DetallePeliculaComponent },
   { path: '**', redirectTo: '' }
 ];

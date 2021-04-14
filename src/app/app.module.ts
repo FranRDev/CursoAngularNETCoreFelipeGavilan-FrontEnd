@@ -43,6 +43,7 @@ import { AutocompletarActorComponent } from './actores/autocompletar-actor/autoc
 import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component';
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 import { AutorizacionComponent } from './seguridad/autorizacion/autorizacion.component';
+import { IniciarSesionComponent } from './seguridad/iniciar-sesion/iniciar-sesion.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { AutorizacionComponent } from './seguridad/autorizacion/autorizacion.com
     AutocompletarActorComponent,
     MostrarErroresComponent,
     DetallePeliculaComponent,
-    AutorizacionComponent
+    AutorizacionComponent,
+    IniciarSesionComponent
   ],
   imports: [
     BrowserModule,
