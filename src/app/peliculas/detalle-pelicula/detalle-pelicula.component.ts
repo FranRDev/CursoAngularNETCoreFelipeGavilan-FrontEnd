@@ -27,7 +27,6 @@ export class DetallePeliculaComponent implements OnInit {
       parametros => {
         this.peliculasService.obtenerPorId(parametros.id).subscribe(
           pelicula => {
-            console.log(pelicula);
             this.pelicula = pelicula;
             this.fechaLanzamiento = new Date(this.pelicula.fechaLanzamiento);
             this.trailer = this.generarUrlYouTubeSegura(this.pelicula.trailer);

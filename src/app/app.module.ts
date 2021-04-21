@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,6 +46,7 @@ import { AutorizacionComponent } from './seguridad/autorizacion/autorizacion.com
 import { IniciarSesionComponent } from './seguridad/iniciar-sesion/iniciar-sesion.component';
 import { RegistroComponent } from './seguridad/registro/registro.component';
 import { FormularioAutenticacionComponent } from './seguridad/formulario-autenticacion/formulario-autenticacion.component';
+import { InterceptorService } from './seguridad/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,11 @@ import { FormularioAutenticacionComponent } from './seguridad/formulario-autenti
     HttpClientModule,
     SweetAlert2Module.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

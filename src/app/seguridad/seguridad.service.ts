@@ -57,6 +57,10 @@ export class SeguridadService {
     return '';
   }
 
+  obtenerToken(): string {
+    return localStorage.getItem(this.llaveToken);
+  }
+
   registrar(credenciales: CredencialesUsuarioDTO): Observable<RespuestaAutenticacionDTO> {
     return this.httpClient.post<RespuestaAutenticacionDTO>(this.urlApi + '/Crear', credenciales);
   }

@@ -11,8 +11,8 @@ export class VotacionesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  votar(idPelicula: number, puntuacion: number) {
-    return this.httpClient.post(this.urlApi, { idPelicula, puntuacion });
+  votar(peliculaId: number, puntuacion: number) {
+    return this.httpClient.post(this.urlApi, { peliculaId, puntuacion });
   }
 
 }
