@@ -35,8 +35,8 @@
 
     <app-autorizacion>
         <ng-container autorizado>
-            <span>Hola, </span>
-            <a mat-button>Cerrar sesión</a>
+            <span>Hola, {{ seguridadService.obtenerCampoJWT('http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress') }}</span>
+            <a mat-button (click)="seguridadService.cerrarSesion()">Cerrar sesión</a>
         </ng-container>
 
         <ng-container noAutorizado>
