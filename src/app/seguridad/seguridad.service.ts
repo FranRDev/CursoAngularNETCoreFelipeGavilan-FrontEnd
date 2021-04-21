@@ -11,6 +11,7 @@ export class SeguridadService {
 
   private readonly llaveExpiracion = 'expiracion';
   private readonly llaveToken = 'token';
+  private readonly campoRol = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
   private readonly urlApi = environment.urlApi + 'cuentas';
 
   constructor(private httpClient: HttpClient) { }
@@ -54,7 +55,7 @@ export class SeguridadService {
   }
 
   obtenerRol(): string {
-    return '';
+    return this.obtenerCampoJWT(this.campoRol);
   }
 
   obtenerToken(): string {
