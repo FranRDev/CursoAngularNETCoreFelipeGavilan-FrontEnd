@@ -44,6 +44,8 @@ import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-er
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 import { AutorizacionComponent } from './seguridad/autorizacion/autorizacion.component';
 import { IniciarSesionComponent } from './seguridad/iniciar-sesion/iniciar-sesion.component';
+import { RegistroComponent } from './seguridad/registro/registro.component';
+import { FormularioAutenticacionComponent } from './seguridad/formulario-autenticacion/formulario-autenticacion.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { IniciarSesionComponent } from './seguridad/iniciar-sesion/iniciar-sesio
     MostrarErroresComponent,
     DetallePeliculaComponent,
     AutorizacionComponent,
-    IniciarSesionComponent
+    IniciarSesionComponent,
+    RegistroComponent,
+    FormularioAutenticacionComponent
   ],
   imports: [
     BrowserModule,

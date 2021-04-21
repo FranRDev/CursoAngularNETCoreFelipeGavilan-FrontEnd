@@ -1,0 +1,22 @@
+<h3>{{ accion }}</h3>
+
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<form (submit)="envio.emit(formulario.value)" [formGroup]="formulario">
+    <mat-form-field appearance="outline">
+        <mat-label>Correo electrónico</mat-label>
+        <input formControlName="correo" matInput />
+        <mat-error>{{ obtenerMensajeErrorCorreo() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" formControlName="clave" matInput />
+        <mat-error>La contraseña es obligatoria</mat-error>
+    </mat-form-field>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="formulario.invalid">{{ accion }}</button>
+        <a mat-stroked-button routerLink="/">Cancelar</a>
+    </div>
+</form>

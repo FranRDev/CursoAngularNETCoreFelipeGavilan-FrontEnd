@@ -16,10 +16,12 @@ import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-pe
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
 import { AdminGuard } from './admin.guard';
 import { IniciarSesionComponent } from './seguridad/iniciar-sesion/iniciar-sesion.component';
+import { RegistroComponent } from './seguridad/registro/registro.component';
 
 const routes: Routes = [
   { path: '', component: PaginaInicioComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
+  { path: 'registro', component: RegistroComponent },
   { path: 'actores', component: IndiceActoresComponent, canActivate: [AdminGuard] },
   { path: 'actores/crear', component: CrearActorComponent, canActivate: [AdminGuard] },
   { path: 'actores/editar/:id', component: EditarActorComponent, canActivate: [AdminGuard] },

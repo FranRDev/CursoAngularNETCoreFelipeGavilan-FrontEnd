@@ -21,6 +21,9 @@ export function parsearErroresApi(respuesta: any): string[] {
         if (typeof respuesta.error === 'string') {
             resultado.push(respuesta.error);
 
+        } else if (Array.isArray(respuesta.error)) {
+            respuesta.error.forEach(valor => resultado.push(valor.description));
+
         } else {
             const mapaErrores = respuesta.error.errors;
             const entradas = Object.entries(mapaErrores);
