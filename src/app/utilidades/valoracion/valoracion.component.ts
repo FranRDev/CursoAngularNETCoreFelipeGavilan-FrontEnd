@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SeguridadService } from 'src/app/seguridad/seguridad.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-valoracion',
@@ -16,7 +18,7 @@ export class ValoracionComponent implements OnInit {
   @Output()
   valorado: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private seguridadService: SeguridadService) { }
 
   ngOnInit(): void {
     this.estrellas = Array(this.maximo).fill(0);
@@ -36,8 +38,13 @@ export class ValoracionComponent implements OnInit {
   }
 
   valorar(indice: number): void {
-    this.valoracion = this.seleccionado;
-    this.valorado.emit(this.valoracion);
+    if (this.seguridadService.haAutenticado()) {
+      this.valoracion = this.seleccionado;
+      this.valorado.emit(this.valoracion);
+
+    } else {
+      Swal.fire("Lo sentimos", "Tiene que inicar sesión para votar", "error");
+    }
   }
 
 }

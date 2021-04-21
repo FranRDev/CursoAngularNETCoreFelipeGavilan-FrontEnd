@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CoordenadasConMensaje } from 'src/app/utilidades/mapa/coordenadas';
+import { VotacionesService } from 'src/app/votaciones/votaciones.service';
+import Swal from 'sweetalert2';
 import { PeliculaDTO } from '../pelicula';
 import { PeliculasService } from '../peliculas.service';
 
@@ -17,7 +19,8 @@ export class DetallePeliculaComponent implements OnInit {
   pelicula: PeliculaDTO;
   trailer: SafeResourceUrl;
 
-  constructor(private peliculasService: PeliculasService, private activatedRoute: ActivatedRoute, private domSanitizer: DomSanitizer) { }
+  constructor(private peliculasService: PeliculasService, private activatedRoute: ActivatedRoute, private domSanitizer: DomSanitizer,
+    private votacionesService: VotacionesService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
@@ -48,6 +51,11 @@ export class DetallePeliculaComponent implements OnInit {
     }
 
     return this.domSanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${idVideo}`);
+  }
+
+  valorar(puntuacion: number) {
+    this.votacionesService.votar(this.pelicula.id, puntuacion)
+      .subscribe(() => Swal.fire("Genial", "Votación realizada con éxito", "success"));
   }
 
 }
