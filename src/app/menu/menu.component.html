@@ -11,7 +11,7 @@
         </a>
     </div>
 
-    <app-autorizacion [rol]="'admin'">
+    <app-autorizacion [rol]="'Admin'">
         <ng-container autorizado>
             <div>
                 <a mat-button routerLink="generos">Géneros</a>
@@ -27,6 +27,10 @@
 
             <div>
                 <a mat-button routerLink="peliculas/crear">Crear película</a>
+            </div>
+            
+            <div>
+                <a mat-button routerLink="usuarios">Usuarios</a>
             </div>
         </ng-container>
     </app-autorizacion>

@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CredencialesUsuarioDTO, RespuestaAutenticacionDTO } from './seguridad';
+import { CredencialesUsuarioDTO, RespuestaAutenticacionDTO, UsuarioDTO } from './seguridad';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,11 @@ export class SeguridadService {
   private readonly urlApi = environment.urlApi + 'cuentas';
 
   constructor(private httpClient: HttpClient) { }
+
+  anhadirAdmin(idUsuario: string) {
+    const cabeceras = new HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.urlApi}/AnhadirAdmin`, JSON.stringify(idUsuario), { headers: cabeceras });
+  }
 
   cerrarSesion() {
     localStorage.removeItem(this.llaveToken);
@@ -60,6 +65,18 @@ export class SeguridadService {
 
   obtenerToken(): string {
     return localStorage.getItem(this.llaveToken);
+  }
+
+  public obtenerUsuarios(pagina: number, registros: number): Observable<any> {
+    let parametros = new HttpParams();
+    parametros = parametros.append('Pagina', pagina.toString());
+    parametros = parametros.append('Registros', registros.toString());
+    return this.httpClient.get<UsuarioDTO[]>(`${this.urlApi}/Usuarios`, { observe: 'response', params: parametros });
+  }
+  
+  quitarAdmin(idUsuario: string) {
+    const cabeceras = new HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.urlApi}/QuitarAdmin`, JSON.stringify(idUsuario), { headers: cabeceras });
   }
 
   registrar(credenciales: CredencialesUsuarioDTO): Observable<RespuestaAutenticacionDTO> {
